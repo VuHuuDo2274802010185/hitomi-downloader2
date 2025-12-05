@@ -125,6 +125,7 @@ jobs:
     needs: get-version
     env:
       VERSION: ${{ needs.get-version.outputs.VERSION }}
+      REPO_NAME: hitomi-downloader
     outputs:
       VERSION: ${{ env.VERSION }}
     runs-on: ubuntu-24.04

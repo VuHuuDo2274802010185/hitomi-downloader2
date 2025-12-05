@@ -3,8 +3,8 @@ runtime: org.gnome.Platform
 runtime-version: '46'
 sdk: org.gnome.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.node20
+  - org.freedesktop.Sdk.Extension.rust-stable//24.08
+  - org.freedesktop.Sdk.Extension.node20//24.08
 
 command: hitomi-downloader
 
@@ -34,12 +34,6 @@ build-options:
     npm_config_nodedir: /usr/lib/sdk/node20
 
 modules:
-  # WebKitGTK dependencies
-  - name: webkit2gtk-4.1
-    buildsystem: simple
-    build-commands:
-      - echo "WebKit is provided by the GNOME runtime"
-
   - name: hitomi-downloader
     buildsystem: simple
     build-options:
