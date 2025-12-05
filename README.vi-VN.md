@@ -101,8 +101,24 @@ pnpm tauri build
 ./build-ubuntu.sh
 ```
 
+### 📦 Hỗ trợ Flatpak
+
+Flatpak hiện có sẵn để cài đặt dễ dàng trên bất kỳ bản phân phối Linux nào:
+
+```bash
+# Build Flatpak
+./build-flatpak.sh build
+
+# Build và cài đặt
+./build-flatpak.sh install
+
+# Chạy ứng dụng
+flatpak run com.thinhENK.hitomi-downloader
+```
+
 Để xem hướng dẫn chi tiết bao gồm cài đặt và gỡ bỏ:
 - **[Hướng dẫn Build & Cài đặt Ubuntu](./docs/guides/UBUNTU_BUILD_GUIDE.md)** (Tiếng Việt + English)
+- **[Hướng dẫn Build & Cài đặt Flatpak](./docs/guides/FLATPAK_GUIDE.md)** (Tiếng Việt + English)
 - [Hướng dẫn Tối ưu Linux](./docs/optimization/LINUX_OPTIMIZATION.vi-VN.md) (Tiếng Việt)
 - [Linux Optimization Guide](./docs/optimization/LINUX_OPTIMIZATION.md) (English)
 

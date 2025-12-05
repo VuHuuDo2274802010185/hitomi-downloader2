@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Hitomi Downloader
+Comment=A GUI-based multi-threaded downloader for hitomi.la
+Comment[vi]=Trình tải xuống đa luồng với giao diện đồ họa cho hitomi.la
+Comment[zh_CN]=一个基于GUI的多线程下载器，用于hitomi.la
+Exec=hitomi-downloader
+Icon=com.thinhENK.hitomi-downloader
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;
+Keywords=download;manga;comic;hitomi;
+StartupWMClass=hitomi-downloader

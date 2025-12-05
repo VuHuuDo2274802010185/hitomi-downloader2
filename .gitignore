@@ -17,6 +17,12 @@ dist-ssr
 *.local
 build-output
 
+# Flatpak build artifacts
+flatpak-build
+flatpak-output
+hitomi-downloader-repo
+.flatpak-builder
+
 # Cache directories
 .cache
 .temp

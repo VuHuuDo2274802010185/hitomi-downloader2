@@ -84,6 +84,41 @@ pnpm install
 pnpm tauri build
 ```
 
+## 🐧 Linux/Ubuntu 构建与安装
+
+本应用针对 **Ubuntu 24.04 LTS** 进行了优化，具有以下性能增强：
+
+- **自适应并发**: 自动根据 CPU 核心数进行扩展
+- **HTTP 连接池**: 优化高吞吐量下载
+- **内存高效**: 智能资源管理
+- **安全加固**: Rust 内存安全 + 沙盒环境
+- **自动构建与清理**: 构建脚本只保留应用程序，删除构建产物（节省约 13-15GB）
+
+### Ubuntu 快速构建
+
+```bash
+./build-ubuntu.sh
+```
+
+### 📦 Flatpak 支持
+
+Flatpak 现已支持，可在任何 Linux 发行版上轻松安装：
+
+```bash
+# 构建 Flatpak
+./build-flatpak.sh build
+
+# 构建并安装
+./build-flatpak.sh install
+
+# 运行应用程序
+flatpak run com.thinhENK.hitomi-downloader
+```
+
+详细说明包括安装和卸载，请参阅：
+- **[Ubuntu 构建与安装指南](./docs/guides/UBUNTU_BUILD_GUIDE.md)**（英文 + 越南语）
+- **[Flatpak 构建与安装指南](./docs/guides/FLATPAK_GUIDE.md)**（英文 + 越南语）
+
 ## 🌐 添加新语言
 
 欢迎帮助翻译本项目！如果您想要为项目添加新语言，请参考 [PR #1](https://github.com/lanyeeee/hitomi-downloader/pull/1) 的实现方式。这个PR展示了如何添加`英语(美国)`的本地化文件
