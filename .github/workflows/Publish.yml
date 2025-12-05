@@ -129,6 +129,8 @@ jobs:
     outputs:
       VERSION: ${{ env.VERSION }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     container:
       image: bilelmoussaoui/flatpak-github-actions:gnome-46
       options: --privileged
