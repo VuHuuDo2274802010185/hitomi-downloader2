@@ -1,0 +1,70 @@
+app-id: com.thinhENK.hitomi-downloader
+runtime: org.gnome.Platform
+runtime-version: '46'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.node20
+
+command: hitomi-downloader
+
+finish-args:
+  # Network access for downloading
+  - --share=network
+  # Display access
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  # GPU acceleration for WebKit
+  - --device=dri
+  # User downloads folder access
+  - --filesystem=xdg-download
+  # User documents folder access (optional)
+  - --filesystem=xdg-documents
+  # Desktop integration
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  # Allow file picker access
+  - --talk-name=org.freedesktop.portal.FileChooser
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node20/bin
+  env:
+    CARGO_HOME: /run/build/hitomi-downloader/cargo
+    npm_config_nodedir: /usr/lib/sdk/node20
+
+modules:
+  # WebKitGTK dependencies
+  - name: webkit2gtk-4.1
+    buildsystem: simple
+    build-commands:
+      - echo "WebKit is provided by the GNOME runtime"
+
+  - name: hitomi-downloader
+    buildsystem: simple
+    build-options:
+      env:
+        CARGO_HOME: /run/build/hitomi-downloader/cargo
+    build-commands:
+      # Install pnpm
+      - npm install -g pnpm
+      # Install frontend dependencies
+      - pnpm install --frozen-lockfile
+      # Build frontend
+      - pnpm build
+      # Build Tauri app (release)
+      - cd src-tauri && cargo build --release
+      # Install binary
+      - install -Dm755 src-tauri/target/release/hitomi-downloader ${FLATPAK_DEST}/bin/hitomi-downloader
+      # Install desktop file
+      - install -Dm644 flatpak/com.thinhENK.hitomi-downloader.desktop ${FLATPAK_DEST}/share/applications/com.thinhENK.hitomi-downloader.desktop
+      # Install metainfo
+      - install -Dm644 flatpak/com.thinhENK.hitomi-downloader.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.thinhENK.hitomi-downloader.metainfo.xml
+      # Install icons
+      - install -Dm644 src-tauri/icons/32x32.png ${FLATPAK_DEST}/share/icons/hicolor/32x32/apps/com.thinhENK.hitomi-downloader.png
+      - install -Dm644 src-tauri/icons/64x64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/com.thinhENK.hitomi-downloader.png
+      - install -Dm644 src-tauri/icons/128x128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/com.thinhENK.hitomi-downloader.png
+      - install -Dm644 src-tauri/icons/128x128@2x.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.thinhENK.hitomi-downloader.png
+    sources:
+      - type: dir
+        path: ..

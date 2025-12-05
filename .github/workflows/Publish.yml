@@ -121,6 +121,32 @@ jobs:
           name: linux-assets
           path: artifacts/*
 
+  flatpak-build:
+    needs: get-version
+    env:
+      VERSION: ${{ needs.get-version.outputs.VERSION }}
+    outputs:
+      VERSION: ${{ env.VERSION }}
+    runs-on: ubuntu-24.04
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-46
+      options: --privileged
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Flatpak
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: ${{ env.REPO_NAME }}_${{ env.VERSION }}_linux_amd64.flatpak
+          manifest-path: flatpak/com.thinhENK.hitomi-downloader.yml
+          cache-key: flatpak-builder-${{ github.sha }}
+
+      - name: Upload Flatpak artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flatpak-assets
+          path: ${{ env.REPO_NAME }}_${{ env.VERSION }}_linux_amd64.flatpak
+
   macos-build:
     needs: get-version
     env:
@@ -173,7 +199,7 @@ jobs:
           path: artifacts/*
 
   create-release:
-    needs: [ windows-build, linux-build, macos-build ]
+    needs: [ windows-build, linux-build, flatpak-build, macos-build ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -189,6 +215,12 @@ jobs:
         with:
           name: linux-assets
           path: artifacts/linux
+
+      - name: Download Flatpak assets
+        uses: actions/download-artifact@v4
+        with:
+          name: flatpak-assets
+          path: artifacts/flatpak
 
       - name: Download macOS aarch64 assets
         uses: actions/download-artifact@v4
@@ -217,6 +249,7 @@ jobs:
           files: |
             artifacts/windows/*
             artifacts/linux/*
+            artifacts/flatpak/*
             artifacts/macos-aarch64/*
             artifacts/macos-x86_64/*
           draft: true

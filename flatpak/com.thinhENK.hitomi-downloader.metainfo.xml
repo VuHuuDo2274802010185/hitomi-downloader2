@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.thinhENK.hitomi-downloader</id>
+  <name>Hitomi Downloader</name>
+  <summary>A GUI-based multi-threaded downloader</summary>
+  <summary xml:lang="vi">Trình tải xuống đa luồng với giao diện đồ họa</summary>
+  <summary xml:lang="zh_CN">基于GUI的多线程下载器</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  
+  <description>
+    <p>
+      Hitomi Downloader is a GUI-based multi-threaded downloader for hitomi.la.
+      Built with Tauri, it provides a lightweight, clean, and easy-to-use interface.
+    </p>
+    <p xml:lang="vi">
+      Hitomi Downloader là trình tải xuống đa luồng với giao diện đồ họa cho hitomi.la.
+      Được xây dựng với Tauri, cung cấp giao diện nhẹ, sạch và dễ sử dụng.
+    </p>
+    <p xml:lang="zh_CN">
+      Hitomi Downloader 是一个用于 hitomi.la 的基于 GUI 的多线程下载器。
+      使用 Tauri 构建，提供轻量、简洁、易用的界面。
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Multi-threaded downloading to maximize download speed</li>
+      <li>One-click export to PDF or CBZ formats</li>
+      <li>Built-in multi-language support (i18n)</li>
+      <li>Customizable directory structure and naming rules</li>
+    </ul>
+  </description>
+  
+  <launchable type="desktop-id">com.thinhENK.hitomi-downloader.desktop</launchable>
+  
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main interface - Search tab</caption>
+      <image>https://github.com/user-attachments/assets/fd93fd2f-db16-43b6-86cf-aa643eb572c8</image>
+    </screenshot>
+    <screenshot>
+      <caption>Download interface</caption>
+      <image>https://github.com/user-attachments/assets/81a859f2-2a06-4eca-b45f-4f6555cc62c0</image>
+    </screenshot>
+  </screenshots>
+  
+  <url type="homepage">https://github.com/lanyeeee/hitomi-downloader</url>
+  <url type="bugtracker">https://github.com/lanyeeee/hitomi-downloader/issues</url>
+  
+  <developer id="com.thinhENK">
+    <name>thinhENK</name>
+  </developer>
+  
+  <provides>
+    <binary>hitomi-downloader</binary>
+  </provides>
+  
+  <content_rating type="oars-1.1" />
+  
+  <releases>
+    <release version="0.2.0" date="2024-01-01">
+      <description>
+        <p>Latest release with performance improvements and bug fixes.</p>
+      </description>
+    </release>
+  </releases>
+  
+  <categories>
+    <category>Network</category>
+    <category>FileTransfer</category>
+  </categories>
+  
+  <keywords>
+    <keyword>download</keyword>
+    <keyword>manga</keyword>
+    <keyword>comic</keyword>
+    <keyword>hitomi</keyword>
+  </keywords>
+</component>

@@ -95,8 +95,24 @@ This application is optimized for **Ubuntu 24.04 LTS** with specific performance
 ./build-ubuntu.sh
 ```
 
+### 📦 Flatpak Support
+
+Flatpak is now available for easy installation on any Linux distribution:
+
+```bash
+# Build Flatpak
+./build-flatpak.sh build
+
+# Build and install
+./build-flatpak.sh install
+
+# Run the application
+flatpak run com.thinhENK.hitomi-downloader
+```
+
 For detailed instructions including installation and uninstallation, see:
 - **[Ubuntu Build & Installation Guide](./docs/guides/UBUNTU_BUILD_GUIDE.md)** (English + Tiếng Việt)
+- **[Flatpak Build & Installation Guide](./docs/guides/FLATPAK_GUIDE.md)** (English + Tiếng Việt)
 - [Linux Optimization Guide](./docs/optimization/LINUX_OPTIMIZATION.md) (English)
 - [Hướng dẫn Tối ưu Linux](./docs/optimization/LINUX_OPTIMIZATION.vi-VN.md) (Tiếng Việt)
 
